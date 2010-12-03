@@ -1,15 +1,18 @@
 #!/usr/bin/perl -w
 ########################################################################
-# 
+#
+# Novell::Bugzilla - Authenticate on 'bugzilla.novell.com' via iChain
+# Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+# for more details.
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -18,19 +21,23 @@
 
 package Novell::Bugzilla;
 
-our $VERSION = '1.1c';
+our $VERSION   = '1.2c';
+our @ISA       = qw(Exporter);
+our @EXPORT_OK = qw(_logged_in);
 
 use strict;
 use warnings 'all';
 use Carp qw/croak carp/;
 use WWW::Mechanize;
 
+use constant BUGZILLA_URI => qq(bugzilla.novell.com);
+
 {
     
     ##############################################
     # _get_form_by_field()
-    # 
-    #
+    # Set the login form to the current form in
+    # $mech or croak 
     ##############################################
     sub _get_form_by_field {
         my ( $self, $field ) = @_;
@@ -53,18 +60,18 @@ use WWW::Mechanize;
 
     ##############################################
     # _logged_in()
-    #
-    #
+    # Returns ture if authentication succeded, or
+    # otherwise false.
     ##############################################
     sub _logged_in {
-        my ( $self, $response ) = @_;
+        my ( $self, $content ) = @_;
 
-        if ($response->content !~ m{Login failed\.}i) {
-            # Login failed, return 1
+        if ($content !~ m{Login failed\.}i) {
+            # Login succeeded, return 1
             return 1;
         }
         else {
-            # Login succeeded, return 0
+            # Login failed, return 0
             return 0;
         }
     }
@@ -87,10 +94,9 @@ use WWW::Mechanize;
 
         $mech->get($login_page);
 
-        croak "Could not open page $login_page"
-          unless $mech->status == '200'
-              or $mech->status == '404'
-              or not $mech->success;
+        if ($mech->status != 200 or !$mech->success) {
+            croak "Could not _login()";
+        }
 
         $self->_get_form_by_field('username');
 
@@ -103,7 +109,7 @@ use WWW::Mechanize;
 
         my $response = $mech->submit_form();
 
-        if ($self->_logged_in($response)) {
+        if ($self->_logged_in($response->content)) {
             # Login succeeded
             return 1;
         }
@@ -113,6 +119,8 @@ use WWW::Mechanize;
         }
     }
 
+    #########################################################################
+    #                            </helper-subs>
     #########################################################################
 
     sub new {
@@ -128,19 +136,23 @@ use WWW::Mechanize;
         if (!exists $args{'server'}) {
             # No 'server' key in %args, use default
             # bugzilla.novell.com
-            $args{'server'} = 'bugzilla.novell.com';
+            $self->{'server'} = BUGZILLA_URI;
+        }
+        else {
+            # Different server specified
+            $self->{'server'} = $args{'server'};
         }
 
         if (!delete $args{'use_ssl'}) {
-            # Use http
+            # Use HTTP
             $self->{'protocol'} = 'http';
         }
         else {
-            # Use http over SSL
+            # Use HTTP over SSL
             $self->{'protocol'} = 'https';
         }
 
-        # Create WWW::Mechanize object
+        # Create WWW::Mechanize object in $self
         $self->{'mech'} = WWW::Mechanize->new
           or croak 'Could not create WWW::Mechanize object';
 
@@ -159,10 +171,73 @@ use WWW::Mechanize;
             croak 'Could not login (wrong username or password?)';
         }
 
-        return $self;
+        return $self->{'mech'};
     }
 
 }
 1;
 __END__
 
+=pod 
+
+=head1 SYNOPSIS
+        
+        use Novell::Bugzilla;
+        use Data::Dumper;
+
+        my $novell_bugzilla = new Novell::Bugzilla(username=>'foo',
+                                                   password=>'bar');
+
+        # $novell_bugzilla is a fully authenticated WWW::Mechanize object
+        # on 'bugzilla.novell.com'
+        print Dumper \$novell_bugzilla;
+        return 0;
+
+=head1 DESCRIPTION
+
+Novell::Bugzilla is a lightweight, easy and useful interface for producing
+fully iChain authenticated WWW::Mechanize objects on 'bugzilla.novell.com'
+It can work either on HTTP or HTTP over ssl and allows its users to set a
+custom HTTP User-Agent or a HTTP(s) Proxy, and probably more in future if
+time permits.
+
+=head1 FEATURES
+
+=over 2
+=item Authentication through iChain on 'bugzilla.novell.com' or any other 
+      iChain based application.
+
+=item HTTP or HTTP over SSL, customizable
+
+=item HTTP User-Agent customizable as well
+
+=item Proxy-Support
+
+=item Leightweightness++ =)
+=back
+
+=head1 EXAMPLES
+
+Please take a look in the L<examples/> directory that is shipped along with 
+this package.
+
+=head1 BUGS
+
+Although Novell::Bugzilla is pretty leightweight and tiny there might still be
+some bugs. However, there is no known one at the moment. If you find some bugs
+please don't hesitate to fix them yourself and send me the patches.
+
+=head1 RESOURCES
+
+There will perhaps be a CPAN version, but currently there is only the version
+on github you may want to checkout:
+
+=over2
+https://github.com/mweckbecker/Novell--Bugzilla
+=back
+
+=head1 LICENSE
+
+
+=head1 AUTHOR
+Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
