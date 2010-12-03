@@ -1,0 +1,36 @@
+commit 0576c1fc2c58edd0861fa8c27b37a080ab9f42f8
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:23:36 2010 +0100
+
+     - Updated MANIFEST
+
+commit 65ced4a246fd360e83b9ff7e70b964dd0af691c4
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:21:59 2010 +0100
+
+    Follow-up for the last commit. Last commit message still applies here as well.
+
+commit 1653f4421be6b098556dd3e966078a52badf36c7
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:19:35 2010 +0100
+
+    Numerous changes in lib/Novell/Bugzilla.pm such as:
+    
+     - make sure perlcritic is satisfied
+     - removed postfix 'if' and 'unless'
+     - POD added
+     - ... and many more stuff
+
+commit 21ef0ad1b3e70ef9c512354fdb274fb5e1641917
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 12:33:07 2010 +0100
+
+    - Touched CHANGELOG, LICENSE and MANIFEST,
+    - Created Makefile.PL
+    - Started Bugzilla.pm
+
+commit 1e3b8649564ecd4f5aae020ec4d94bab834ac58c
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 11:39:03 2010 +0100
+
+    first commit
