@@ -1,0 +1,11 @@
+.
+./LICENSE
+./examples
+./MANIFEST
+./README
+./CHANGELOG
+./lib
+./lib/Novell
+./lib/Novell/Bugzilla.pm
+./Makefile.PL
+./t
