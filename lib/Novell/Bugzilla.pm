@@ -27,10 +27,11 @@ our @EXPORT_OK = qw(_logged_in);
 
 use strict;
 use warnings 'all';
+use Readonly;
 use Carp qw/croak carp/;
 use WWW::Mechanize;
 
-use constant BUGZILLA_URI => qq(bugzilla.novell.com);
+Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
 {
     
@@ -41,11 +42,13 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
     ##############################################
     sub _get_form_by_field {
         my ( $self, $field ) = @_;
+        my $i = 1;
 
-        croak 'invalid field' unless $field;
+        if (!$field) {
+            croak "invalid field";
+        }
 
         my $mech = $self->{mech};
-        my $i    = 1;
 
         foreach my $form ( $mech->forms() ) {
             if ( $form->find_input($field) ) {
@@ -66,7 +69,7 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
     sub _logged_in {
         my ( $self, $content ) = @_;
 
-        if ($content !~ m{Login failed\.}i) {
+        if ($content !~ m{Login failed\.}ix) {
             # Login succeeded, return 1
             return 1;
         }
@@ -78,8 +81,8 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
 
     ##############################################
     # _login()
-    #
-    #
+    # Perform the authentication on iChain, return
+    # 1 on success, 0 on failure
     ##############################################
     sub _login {
         my $self = shift;
@@ -94,8 +97,9 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
 
         $mech->get($login_page);
 
-        if ($mech->status != 200 or !$mech->success) {
-            croak "Could not _login()";
+        if ($mech->status != 200 || !$mech->success) {
+            # HTTP code > 200, !$mech->success
+            croak "Could not _login(), http code was != 200";
         }
 
         $self->_get_form_by_field('username');
@@ -128,15 +132,15 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
         my $self  = {};
         my %args  = @_;
 
-        if (!$args{'username'} or !$args{'password'}) {
+        if (!$args{'username'} || !$args{'password'}) {
             # No username or password given, croak
             croak "'username', and 'password' are required arguments."
         }
 
         if (!exists $args{'server'}) {
             # No 'server' key in %args, use default
-            # bugzilla.novell.com
-            $self->{'server'} = BUGZILLA_URI;
+            # 'bugzilla.novell.com'
+            $self->{'server'} = $BUGZILLA_URL;
         }
         else {
             # Different server specified
@@ -157,6 +161,7 @@ use constant BUGZILLA_URI => qq(bugzilla.novell.com);
           or croak 'Could not create WWW::Mechanize object';
 
         if (!exists $args{'agent'}) {
+            # No custom agent specified, use default agent instead
             $self->{'mech'}->agent('Mozilla/5.0 (X11; U; Linux i686; en-US;)');
         }
         else {
@@ -185,19 +190,19 @@ __END__
         use Novell::Bugzilla;
         use Data::Dumper;
 
-        my $novell_bugzilla = new Novell::Bugzilla(username=>'foo',
-                                                   password=>'bar');
+        my $novell_bugzilla = new Novell::Bugzilla(username => 'foo',
+                                                   password => 'bar');
 
         # $novell_bugzilla is a fully authenticated WWW::Mechanize object
-        # on 'bugzilla.novell.com'
+        # on 'bugzilla.novell.com' now.
         print Dumper \$novell_bugzilla;
         return 0;
 
 =head1 DESCRIPTION
 
-Novell::Bugzilla is a lightweight, easy and useful interface for producing
-fully iChain authenticated WWW::Mechanize objects on 'bugzilla.novell.com'
-It can work either on HTTP or HTTP over ssl and allows its users to set a
+Novell::Bugzilla is a lightweight, easy and useful interface for creating
+fully iChain authenticated WWW::Mechanize objects on bugzilla.novell.com.
+It can either work on HTTP or HTTP over SSL and allows its users to set a
 custom HTTP User-Agent or a HTTP(s) Proxy, and probably more in future if
 time permits.
 
@@ -215,6 +220,10 @@ time permits.
 
 =item Leightweightness++ =)
 =back
+
+
+=head1 OPTIONS
+
 
 =head1 EXAMPLES
 
@@ -238,6 +247,8 @@ https://github.com/mweckbecker/Novell--Bugzilla
 
 =head1 LICENSE
 
+This code is free software and released under the GPLv2 license. Please see the
+LICENSE file that comes along with this distribution.
 
 =head1 AUTHOR
 Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
