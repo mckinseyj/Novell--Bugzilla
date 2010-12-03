@@ -9,7 +9,7 @@
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, but 
+# This program is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
 # or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
 # for more details.
@@ -34,17 +34,17 @@ use WWW::Mechanize;
 Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
 {
-    
+
     ##############################################
     # _get_form_by_field()
     # Set the login form to the current form in
-    # $mech or croak 
+    # $mech or croak
     ##############################################
     sub _get_form_by_field {
         my ( $self, $field ) = @_;
         my $i = 1;
 
-        if (!$field) {
+        if ( !$field ) {
             croak "invalid field";
         }
 
@@ -69,11 +69,13 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
     sub _logged_in {
         my ( $self, $content ) = @_;
 
-        if ($content !~ m{Login failed\.}ix) {
+        if ( $content !~ m{Login failed\.}ix ) {
+
             # Login succeeded, return 1
             return 1;
         }
         else {
+
             # Login failed, return 0
             return 0;
         }
@@ -97,7 +99,8 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
         $mech->get($login_page);
 
-        if ($mech->status != 200 || !$mech->success) {
+        if ( $mech->status != 200 || !$mech->success ) {
+
             # HTTP code > 200, !$mech->success
             croak "Could not _login(), http code was != 200";
         }
@@ -113,11 +116,13 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
         my $response = $mech->submit_form();
 
-        if ($self->_logged_in($response->content)) {
+        if ( $self->_logged_in( $response->content ) ) {
+
             # Login succeeded
             return 1;
         }
         else {
+
             # Login failed
             return 0;
         }
@@ -132,26 +137,31 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
         my $self  = {};
         my %args  = @_;
 
-        if (!$args{'username'} || !$args{'password'}) {
+        if ( !$args{'username'} || !$args{'password'} ) {
+
             # No username or password given, croak
-            croak "'username', and 'password' are required arguments."
+            croak "'username', and 'password' are required arguments.";
         }
 
-        if (!exists $args{'server'}) {
+        if ( !exists $args{'server'} ) {
+
             # No 'server' key in %args, use default
             # 'bugzilla.novell.com'
             $self->{'server'} = $BUGZILLA_URL;
         }
         else {
+
             # Different server specified
             $self->{'server'} = $args{'server'};
         }
 
-        if (!delete $args{'use_ssl'}) {
+        if ( !delete $args{'use_ssl'} ) {
+
             # Use HTTP
             $self->{'protocol'} = 'http';
         }
         else {
+
             # Use HTTP over SSL
             $self->{'protocol'} = 'https';
         }
@@ -160,7 +170,8 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
         $self->{'mech'} = WWW::Mechanize->new
           or croak 'Could not create WWW::Mechanize object';
 
-        if (!exists $args{'agent'}) {
+        if ( !exists $args{'agent'} ) {
+
             # No custom agent specified, use default agent instead
             $self->{'mech'}->agent('Mozilla/5.0 (X11; U; Linux i686; en-US;)');
         }
@@ -170,7 +181,8 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
         bless $self, $class;
 
-        if (!$self->_login( $args{'username'}, $args{'password'})) {
+        if ( !$self->_login( $args{'username'}, $args{'password'} ) ) {
+
             # Could not login, maybe wrong username or password,
             # croak
             croak 'Could not login (wrong username or password?)';
