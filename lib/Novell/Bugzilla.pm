@@ -29,7 +29,8 @@ use Readonly;
 use Carp qw/croak carp/;
 use WWW::Mechanize;
 
-Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
+Readonly my $BUGZILLA_URL  => qq(bugzilla.novell.com);
+Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6));
 
 {
 
@@ -172,10 +173,10 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
         if ( !exists $args{'agent'} ) {
 
             # No custom agent specified, use default agent instead
-            $self->{'mech'}->agent('Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6)');
+            $self->{'mech'}->agent( $DEFAULT_AGENT );
         }
         else {
-            $self->{'mech'}->agent = $args{'agent'};
+            $self->{'mech'}->agent( $args{'agent'} );
         }
 
         if ( exists $args{'proxy'} && exists $args{'proxy_type'} ) {
