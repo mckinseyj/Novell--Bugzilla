@@ -1,6 +1,5 @@
 #!/usr/bin/perl -w
 ########################################################################
-#
 # Novell::Bugzilla - Authenticate on 'bugzilla.novell.com' via iChain
 # Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
 #
@@ -16,12 +15,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
 ########################################################################
 
 package Novell::Bugzilla;
 
-our $VERSION   = '1.2c';
+our $VERSION   = '1.30';
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(_logged_in);
 
@@ -155,7 +153,8 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
             $self->{'server'} = $args{'server'};
         }
 
-        if ( !$args{'use_ssl'} && exists $args{'server'} ) {
+        if ( !$args{'use_ssl'} && (exists $args{'server'} 
+                && $args{'server'} ne $BUGZILLA_URL)) {
 
             # Use HTTP
             $self->{'protocol'} = 'http';

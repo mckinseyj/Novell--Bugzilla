@@ -10,3 +10,7 @@ Makefile.PL
 MANIFEST
 README
 t
+t/00_can.t
+t/01_logged_in.t
+t/02_bugzilla_up.t
+t/03_interface.t
