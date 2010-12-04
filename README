@@ -1,0 +1,35 @@
+Novell::Bugzilla
+===================================
+
+Novell::Bugzilla is a lightweight, easy and useful interface for creating
+fully iChain authenticated WWW::Mechanize objects on bugzilla.novell.com.
+It can either work on HTTP or HTTP over SSL and allows its users to set a
+custom HTTP User-Agent or a HTTP(s) Proxy, and probably more in future if
+time permits.
+
+INSTALLATION
+------------
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+------------
+
+This module requires these other modules and libraries:
+
+   - WWW::Mechanize
+   - Test::WWW::Mechanize
+   - Carp
+
+COPYRIGHT AND LICENCE
+------------
+
+Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
+
+Please see LICENSE file that is shipped along with this distribution
+for further information.

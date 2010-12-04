@@ -155,7 +155,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
             $self->{'server'} = $args{'server'};
         }
 
-        if ( !delete $args{'use_ssl'} ) {
+        if ( !$args{'use_ssl'} && !exists $args{'server'} ) {
 
             # Use HTTP
             $self->{'protocol'} = 'http';
@@ -173,7 +173,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
         if ( !exists $args{'agent'} ) {
 
             # No custom agent specified, use default agent instead
-            $self->{'mech'}->agent('Mozilla/5.0 (X11; U; Linux i686; en-US;)');
+            $self->{'mech'}->agent('Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6)');
         }
         else {
             $self->{'mech'}->agent = $args{'agent'};
@@ -182,7 +182,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
         if ( exists $args{'proxy'} && exists $args{'proxy_type'} ) {
             
             # Custom proxy required, set it
-            $self->{'mech'}->proxy([$proxy_type], $proxy);
+            $self->{'mech'}->proxy([$args{'proxy_type'}], $args{'proxy'});
         }
 
         bless $self, $class;
