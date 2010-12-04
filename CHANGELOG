@@ -1,3 +1,33 @@
+commit cfbea5cb55c2210705f86c690d24e392ca76bff7
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 13:10:01 2010 +0100
+
+     - Update MANIFEST
+
+commit 84950cf24a7701d6b24e61c1dce216f44ce83d34
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 13:06:08 2010 +0100
+
+     - Proxy support added
+
+commit 89a547a977f1770c3d9a7a24f0cb7f8619b7022b
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:55:12 2010 +0100
+
+     - Makefile.PL contains Test::WWW::Mechanize as a pre-req now.
+
+commit 13d5380a34259a156c33900847079dadc503e167
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:40:19 2010 +0100
+
+     - perltidy
+
+commit 915879c009c222c6a40ed2938709238d8ea85296
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Fri Dec 3 16:25:04 2010 +0100
+
+     - Updated CHANGELOG
+
 commit 0576c1fc2c58edd0861fa8c27b37a080ab9f42f8
 Author: Matthias Weckbecker <mweckbecker@suse.de>
 Date:   Fri Dec 3 16:23:36 2010 +0100

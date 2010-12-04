@@ -69,7 +69,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
     sub _logged_in {
         my ( $self, $content ) = @_;
 
-        if ( $content !~ m{Login failed\.}ix ) {
+        if ( $content !~ m{Login(?:\s+)?failed(?:\.)?}gix ) {
 
             # Login succeeded, return 1
             return 1;
@@ -155,7 +155,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
             $self->{'server'} = $args{'server'};
         }
 
-        if ( !$args{'use_ssl'} && !exists $args{'server'} ) {
+        if ( !$args{'use_ssl'} && exists $args{'server'} ) {
 
             # Use HTTP
             $self->{'protocol'} = 'http';
@@ -168,7 +168,7 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
 
         # Create WWW::Mechanize object in $self
         $self->{'mech'} = WWW::Mechanize->new
-          or croak 'Could not create WWW::Mechanize object';
+          || croak 'Could not create WWW::Mechanize object';
 
         if ( !exists $args{'agent'} ) {
 

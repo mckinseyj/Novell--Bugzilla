@@ -7,6 +7,7 @@ WriteMakefile
 (
           'NAME'         => 'Novell::Bugzilla',
           'VERSION_FROM' => 'lib/Novell/Bugzilla.pm',
+          'AUTHOR'       => 'Matthias Weckbecker, <matthias@weckbecker.name>',
           
           'PREREQ_PM' => {
                            'Carp'                 => 0,
