@@ -179,6 +179,12 @@ Readonly my $BUGZILLA_URL => qq(bugzilla.novell.com);
             $self->{'mech'}->agent = $args{'agent'};
         }
 
+        if ( exists $args{'proxy'} && exists $args{'proxy_type'} ) {
+            
+            # Custom proxy required, set it
+            $self->{'mech'}->proxy([$proxy_type], $proxy);
+        }
+
         bless $self, $class;
 
         if ( !$self->_login( $args{'username'}, $args{'password'} ) ) {
@@ -228,7 +234,7 @@ time permits.
 
 =item HTTP User-Agent customizable as well
 
-=item Proxy-Support
+=item Proxy-Support for different types of proxies
 
 =item Leightweightness++ =)
 =back
