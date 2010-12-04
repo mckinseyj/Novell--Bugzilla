@@ -1,11 +1,13 @@
 .
-./LICENSE
-./examples
-./MANIFEST
-./README
 ./CHANGELOG
+./contrib
+./contrib/perl-Novell-Bugzilla.spec
+./examples
 ./lib
 ./lib/Novell
 ./lib/Novell/Bugzilla.pm
+./LICENSE
 ./Makefile.PL
+./MANIFEST
+./README
 ./t
