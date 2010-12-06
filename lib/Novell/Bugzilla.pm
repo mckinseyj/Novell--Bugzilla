@@ -19,14 +19,17 @@
 
 package Novell::Bugzilla;
 
-our $VERSION   = '1.30';
+use version; 
+our $VERSION   = qv("1.3.0");
+
 our @ISA       = qw(Exporter);
+our @EXPORT    = qw();
 our @EXPORT_OK = qw(_logged_in);
 
 use strict;
 use warnings 'all';
 use Readonly;
-use Carp qw/croak carp/;
+use Carp qw(croak);
 use WWW::Mechanize;
 
 Readonly my $BUGZILLA_URL  => qq(bugzilla.novell.com);
@@ -139,7 +142,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         if ( !$args{'username'} || !$args{'password'} ) {
 
             # No username or password given, croak
-            croak "'username', and 'password' are required arguments.";
+            croak "'username', and 'password' are required arguments.\n";
         }
 
         if ( !exists $args{'server'} ) {
@@ -168,7 +171,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
 
         # Create WWW::Mechanize object in $self
         $self->{'mech'} = WWW::Mechanize->new
-          || croak 'Could not create WWW::Mechanize object';
+          || croak "Could not create WWW::Mechanize object\n";
 
         if ( !exists $args{'agent'} ) {
 
@@ -191,7 +194,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
 
             # Could not login, maybe wrong username or password,
             # croak
-            croak 'Could not login (wrong username or password?)';
+            croak "Could not login (wrong username or password?)\n";
         }
 
         return $self->{'mech'};
@@ -238,7 +241,6 @@ time permits.
 
 =item Leightweightness++ =)
 =back
-
 
 =head1 OPTIONS
 

@@ -1,3 +1,32 @@
+commit e869509ab9d78a3ce5f7f04e7830ac1dc83969d0
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 17:46:47 2010 +0100
+
+     - Fix MANIFEST
+     - Fix "use of uninitialized value" in Bugzilla.pm
+
+commit e3d3c8b9b2cee89a9c502dd01257958af1d58343
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 17:29:11 2010 +0100
+
+     - Fix some bugs and add tests.
+
+commit e67f43f8ba0bd4d4ef5abf2d35a9094c31340763
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 13:52:11 2010 +0100
+
+     - add contrib directory
+
+commit 47f100689a949662474533df65fec996c9dccb2d
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 13:49:26 2010 +0100
+
+     Again numerous of different changes:
+    
+      - Added information such as requirements, installation, etc. in README file
+      - Fixed MANIFEST
+      - Use HTTP over SSL per default on bugzilla.novell.com
+
 commit cfbea5cb55c2210705f86c690d24e392ca76bff7
 Author: Matthias Weckbecker <mweckbecker@suse.de>
 Date:   Sat Dec 4 13:10:01 2010 +0100
