@@ -173,6 +173,10 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         $self->{'mech'} = WWW::Mechanize->new
           || croak "Could not create WWW::Mechanize object\n";
 
+        if ( exists $args{'timeout'} ) {
+            $self->{'mech'}->timeout ( $args{'timeout'} );
+        }
+
         if ( !exists $args{'agent'} ) {
 
             # No custom agent specified, use default agent instead
