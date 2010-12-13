@@ -2,6 +2,7 @@ CHANGELOG
 contrib
 contrib/perl-Novell-Bugzilla.spec
 examples
+examples/example01.pl
 lib
 lib/Novell
 lib/Novell/Bugzilla.pm

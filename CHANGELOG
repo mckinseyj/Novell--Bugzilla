@@ -1,3 +1,21 @@
+commit 289d0a3b9e373a2187beaf571b177874e6bebb48
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Tue Dec 7 15:14:52 2010 +0100
+
+     - add timeout support
+
+commit ae037ab88635b329ad14e286b672cc1b5f82965f
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Mon Dec 6 13:26:08 2010 +0100
+
+     - Fixed version number for good. Hopefully. + Added some more tests for the interface.
+
+commit f435d77741f3f7da5ae49bc2462cba48082f807a
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Sat Dec 4 17:57:02 2010 +0100
+
+     - Fix custom HTTP UserAgent handlinf
+
 commit e869509ab9d78a3ce5f7f04e7830ac1dc83969d0
 Author: Matthias Weckbecker <mweckbecker@suse.de>
 Date:   Sat Dec 4 17:46:47 2010 +0100

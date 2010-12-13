@@ -11,6 +11,7 @@ WriteMakefile
           
           'PREREQ_PM' => {
                            'Carp'                 => 0,
+                           'Readonly'             => 0,
                            'WWW::Mechanize'       => 0,
                            'Test::WWW::Mechanize' => 0,
                            'Test::More'           => 0,

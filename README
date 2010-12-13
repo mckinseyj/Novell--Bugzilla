@@ -23,6 +23,7 @@ DEPENDENCIES
 This module requires these other modules and libraries:
 
    - WWW::Mechanize
+   - Readonly
    - Test::More
    - Test::WWW::Mechanize
    - Carp
