@@ -1,3 +1,9 @@
+commit 02d7fc1dc703a40cf185fc320f9512055ef0a574
+Author: Matthias Weckbecker <mweckbecker@suse.de>
+Date:   Mon Dec 13 16:12:31 2010 +0100
+
+     - Update LICENSE information
+
 commit aaaddcbe2b13a960bcdbf749c5f1cf517ec6035e
 Author: Matthias Weckbecker <mweckbecker@suse.de>
 Date:   Mon Dec 13 15:40:41 2010 +0100
@@ -85,7 +91,7 @@ commit 0576c1fc2c58edd0861fa8c27b37a080ab9f42f8
 Author: Matthias Weckbecker <mweckbecker@suse.de>
 Date:   Fri Dec 3 16:23:36 2010 +0100
 
-     - Updated MANIFEST
+      - Updated MANIFEST
 
 commit 65ced4a246fd360e83b9ff7e70b964dd0af691c4
 Author: Matthias Weckbecker <mweckbecker@suse.de>
