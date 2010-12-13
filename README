@@ -28,7 +28,7 @@ This module requires these other modules and libraries:
    - Test::WWW::Mechanize
    - Carp
 
-COPYRIGHT AND LICENCE
+COPYRIGHT AND LICENSE
 ------------
 
 This code is free software and released under the GPLv2 license. Please see the
