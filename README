@@ -1,4 +1,4 @@
-Novell::Bugzilla
+Novell::Bugzilla (v1.3.0)
 ===================================
 
 Novell::Bugzilla is a lightweight, easy and useful interface for creating
@@ -31,7 +31,7 @@ This module requires these other modules and libraries:
 COPYRIGHT AND LICENCE
 ------------
 
-Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
+This code is free software and released under the GPLv2 license. Please see the
+LICENSE file that comes along with this distribution for further information.
 
-Please see LICENSE file that is shipped along with this distribution
-for further information.
+Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>

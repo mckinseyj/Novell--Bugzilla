@@ -211,7 +211,6 @@ __END__
 =pod 
 
 =head1 SYNOPSIS
-        
         use Novell::Bugzilla;
         use Data::Dumper;
 
@@ -234,6 +233,7 @@ time permits.
 =head1 FEATURES
 
 =over 2
+
 =item Authentication through iChain on 'bugzilla.novell.com' or any other 
       iChain based application.
 
@@ -244,14 +244,31 @@ time permits.
 =item Proxy-Support for different types of proxies
 
 =item Leightweightness++ =)
+
 =back
 
 =head1 OPTIONS
 
+During instance creation you can provide the following optional keys to the 
+package:
+
+=over 2
+
+=item server
+
+=item use_ssl
+
+=item agent 
+
+=item timeout
+
+=item proxy and proxy_type
+
+=back
 
 =head1 EXAMPLES
 
-Please take a look in the L<examples/> directory that is shipped along with 
+Please take a look in the I<examples\/> directory that is shipped along with 
 this package.
 
 =head1 BUGS
@@ -265,14 +282,16 @@ please don't hesitate to fix them yourself and send me the patches.
 There will perhaps be a CPAN version, but currently there is only the version
 on github you may want to checkout:
 
-=over2
-https://github.com/mweckbecker/Novell--Bugzilla
-=back
+=begin html
+
+<b><a href="https://github.com/mweckbecker/Novell--Bugzilla"/></b>
+
+=end html
 
 =head1 LICENSE
 
-This code is free software and released under the GPLv2 license. Please see the
-LICENSE file that comes along with this distribution.
+This code is free software and released under the GPLv3 license. Please see the
+LICENSE file that comes along with this distribution for further information.
 
 =head1 AUTHOR
 Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
