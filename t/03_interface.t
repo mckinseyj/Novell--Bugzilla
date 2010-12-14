@@ -24,7 +24,6 @@ require_ok('Novell::Bugzilla');          #2
 
 my $username = int rand $$;
 my $password = int rand $$;
-my $novell__bugzilla;
 
 #3
 eval { new Novell::Bugzilla( username => $username, password => $password ) }
@@ -49,7 +48,7 @@ eval {
     );
 };
 
-# 6
+#6
 is( ( ref $novell_bugzilla ),
     "WWW::Mechanize", "WWW::Mechanize returned upon sucessful login?" );
 
