@@ -17,13 +17,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
-use Test::More tests => 5;
+use Test::More tests => 6;
 
 BEGIN { use_ok('Novell::Bugzilla') };    #1
 require_ok('Novell::Bugzilla');          #2
 
 my $username = int rand $$;
 my $password = int rand $$;
+my $novell__bugzilla;
 
 #3
 eval { new Novell::Bugzilla( username => $username, password => $password ) }
@@ -40,4 +41,15 @@ eval { new Novell::Bugzilla( password => $password, ) };
 like "$@",
   qr/'username', and 'password' are required arguments./,
   "Missing username.";
+
+eval {
+    $novell_bugzilla = new Novell::Bugzilla(
+        username => "muster_mann",
+        password => "mmustermann1"
+    );
+};
+
+# 6
+is( ( ref $novell_bugzilla ),
+    "WWW::Mechanize", "WWW::Mechanize returned upon sucessful login?" );
 
