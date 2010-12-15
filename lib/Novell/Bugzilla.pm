@@ -214,8 +214,12 @@ __END__
         use Novell::Bugzilla;
         use Data::Dumper;
 
+        # minimalistic example of indirect invocation:
         my $novell_bugzilla = new Novell::Bugzilla(username => 'foo',
                                                    password => 'bar');
+
+        # ... or better, direct invocation w/:
+        # my $novell_bugzilla = Novell::Bugzilla->new(...);
 
         # $novell_bugzilla is a fully authenticated WWW::Mechanize object
         # on 'bugzilla.novell.com' now.
@@ -232,7 +236,7 @@ time permits.
 
 =head1 FEATURES
 
-=over 2
+=over 4
 
 =item Authentication through iChain on 'bugzilla.novell.com' or any other 
       iChain based application.
@@ -243,6 +247,8 @@ time permits.
 
 =item Proxy-Support for different types of proxies
 
+=item Customizable HTTP Timeouts
+
 =item Leightweightness++ =)
 
 =back
@@ -250,19 +256,29 @@ time permits.
 =head1 OPTIONS
 
 During instance creation you can provide the following optional keys to the 
-package:
+package. (username and password are B<required> keys!)
 
 =over 2
 
 =item server
 
-=item use_ssl
+  C<$novell_bugzilla = new Novell::Bugzilla(server => "foo.bar.com/");>
 
-=item agent 
+=item use_ssl (B<required> to be 1 on bugzilla.novell.com (default))
+
+  C<$novell_bugzilla = new Novell::Bugzilla(use_ssl => 0);>
+
+=item agent   (be careful when changing, iChain is strict)
+
+  c<$novell_bugzilla = new Novell::Bugzilla(agent => "Mozilla/1.37");>
 
 =item timeout
 
+  C<$novell_bugzilla = new Novell::Bugzilla(timeout => 120);>
+
 =item proxy and proxy_type
+
+  C<$novell_bugzilla = new Novell::Bugzilla(proxy => "http://localhost:80", proxy_type="http");>
 
 =back
 
@@ -276,6 +292,11 @@ this package.
 Although Novell::Bugzilla is pretty leightweight and tiny there might still be
 some bugs. However, there is no known one at the moment. If you find some bugs
 please don't hesitate to fix them yourself and send me the patches.
+
+=head1 SECURITY
+
+Be careful when running this in a shared environment. Make sure that you don't
+hardcode username and password readable for someone else.
 
 =head1 RESOURCES
 
