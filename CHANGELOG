@@ -40,7 +40,8 @@ commit edb77a3f8496620e40f8f457af58c8a2b0b1518c
 Author: Matthias Weckbecker <matthias@weckbecker.name>
 Date:   Tue Dec 14 13:08:33 2010 +0100
 
-     - test whether Novell::Bugzilla does return an instance to WWW::Mechanize upon sucessful login.
+     - test whether Novell::Bugzilla does return an instance to 
+       WWW::Mechanize upon sucessful login.
 
 commit ee23cbb932483ce93b10f54d8d98ddde39e9d595
 Author: Matthias Weckbecker <matthias@weckbecker.name>
@@ -82,7 +83,8 @@ commit ae037ab88635b329ad14e286b672cc1b5f82965f
 Author: Matthias Weckbecker <matthias@weckbecker.name>
 Date:   Mon Dec 6 13:26:08 2010 +0100
 
-     - Fixed version number for good. Hopefully. + Added some more tests for the interface.
+     - Fixed version number for good. Hopefully. 
+     + Added some more tests for the interface.
 
 commit f435d77741f3f7da5ae49bc2462cba48082f807a
 Author: Matthias Weckbecker <matthias@weckbecker.name>
@@ -159,7 +161,8 @@ commit 65ced4a246fd360e83b9ff7e70b964dd0af691c4
 Author: Matthias Weckbecker <matthias@weckbecker.name>
 Date:   Fri Dec 3 16:21:59 2010 +0100
 
-    Follow-up for the last commit. Last commit message still applies here as well.
+    Follow-up for the last commit. Last commit message still 
+    applies here as well.
 
 commit 1653f4421be6b098556dd3e966078a52badf36c7
 Author: Matthias Weckbecker <matthias@weckbecker.name>
