@@ -1,54 +1,116 @@
+commit 513e8749f690221372a6dd32e664a751b8eee216
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Thu Dec 16 12:32:17 2010 +0100
+
+     - Add '_is_logged_in' state variable, could be useful perhaps(?)
+     - Fixed tests
+     - Supress "on line n at ..." postfix from perl when croak()'ing
+
+commit 68e07694d925b8007d2fad83d4c5ebedaa2b19ca
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Thu Dec 16 11:46:17 2010 +0100
+
+     - require Exporter;
+
+commit b4bd56cc04a6bb0122bb31b9dd64265a6d2f195f
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Wed Dec 15 15:25:21 2010 +0100
+
+     - Enhanced POD
+
+commit 38c0c4f76df3abd5267708cc8c186ba5f5f4d507
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Tue Dec 14 14:36:02 2010 +0100
+
+     - renamed example program, consistence++ =)
+
+commit 44e0c4fda040d5fb0d012c918820291ee435a7f5
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Tue Dec 14 13:48:13 2010 +0100
+
+     - Swap DEPENDENCIES & INSTALLATION.
+
+commit 685cace7858fb95d65199b4fe5f91a1ed92e3825
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Tue Dec 14 13:27:07 2010 +0100
+
+     - removed unused scalar value and whitespace
+
+commit edb77a3f8496620e40f8f457af58c8a2b0b1518c
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Tue Dec 14 13:08:33 2010 +0100
+
+     - test whether Novell::Bugzilla does return an instance to WWW::Mechanize upon sucessful login.
+
+commit ee23cbb932483ce93b10f54d8d98ddde39e9d595
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Mon Dec 13 16:22:32 2010 +0100
+
+     - s/licence/license/i # try to be more consistent
+
+commit 9668fc9ab9f0afb8bf51f3499e962b0d92a9cc0e
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Mon Dec 13 16:13:46 2010 +0100
+
+     - Update CHANGELOG
+
+commit a5846613781ab6e9ec33a7f65e59e2b1567ca12c
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
+Date:   Mon Dec 13 16:13:26 2010 +0100
+
+     - Update CHANGELOG
+
 commit 02d7fc1dc703a40cf185fc320f9512055ef0a574
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Mon Dec 13 16:12:31 2010 +0100
 
      - Update LICENSE information
 
 commit aaaddcbe2b13a960bcdbf749c5f1cf517ec6035e
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Mon Dec 13 15:40:41 2010 +0100
 
      - Updated tests and README, added example code
 
 commit 289d0a3b9e373a2187beaf571b177874e6bebb48
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Tue Dec 7 15:14:52 2010 +0100
 
      - add timeout support
 
 commit ae037ab88635b329ad14e286b672cc1b5f82965f
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Mon Dec 6 13:26:08 2010 +0100
 
      - Fixed version number for good. Hopefully. + Added some more tests for the interface.
 
 commit f435d77741f3f7da5ae49bc2462cba48082f807a
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 17:57:02 2010 +0100
 
      - Fix custom HTTP UserAgent handlinf
 
 commit e869509ab9d78a3ce5f7f04e7830ac1dc83969d0
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 17:46:47 2010 +0100
 
      - Fix MANIFEST
      - Fix "use of uninitialized value" in Bugzilla.pm
 
 commit e3d3c8b9b2cee89a9c502dd01257958af1d58343
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 17:29:11 2010 +0100
 
      - Fix some bugs and add tests.
 
 commit e67f43f8ba0bd4d4ef5abf2d35a9094c31340763
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 13:52:11 2010 +0100
 
      - add contrib directory
 
 commit 47f100689a949662474533df65fec996c9dccb2d
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 13:49:26 2010 +0100
 
      Again numerous of different changes:
@@ -58,49 +120,49 @@ Date:   Sat Dec 4 13:49:26 2010 +0100
       - Use HTTP over SSL per default on bugzilla.novell.com
 
 commit cfbea5cb55c2210705f86c690d24e392ca76bff7
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 13:10:01 2010 +0100
 
      - Update MANIFEST
 
 commit 84950cf24a7701d6b24e61c1dce216f44ce83d34
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Sat Dec 4 13:06:08 2010 +0100
 
      - Proxy support added
 
 commit 89a547a977f1770c3d9a7a24f0cb7f8619b7022b
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:55:12 2010 +0100
 
      - Makefile.PL contains Test::WWW::Mechanize as a pre-req now.
 
 commit 13d5380a34259a156c33900847079dadc503e167
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:40:19 2010 +0100
 
      - perltidy
 
 commit 915879c009c222c6a40ed2938709238d8ea85296
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:25:04 2010 +0100
 
      - Updated CHANGELOG
 
 commit 0576c1fc2c58edd0861fa8c27b37a080ab9f42f8
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:23:36 2010 +0100
 
      - Updated MANIFEST
 
 commit 65ced4a246fd360e83b9ff7e70b964dd0af691c4
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:21:59 2010 +0100
 
     Follow-up for the last commit. Last commit message still applies here as well.
 
 commit 1653f4421be6b098556dd3e966078a52badf36c7
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 16:19:35 2010 +0100
 
     Numerous changes in lib/Novell/Bugzilla.pm such as:
@@ -111,7 +173,7 @@ Date:   Fri Dec 3 16:19:35 2010 +0100
      - ... and many more stuff
 
 commit 21ef0ad1b3e70ef9c512354fdb274fb5e1641917
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 12:33:07 2010 +0100
 
     - Touched CHANGELOG, LICENSE and MANIFEST,
@@ -119,7 +181,7 @@ Date:   Fri Dec 3 12:33:07 2010 +0100
     - Started Bugzilla.pm
 
 commit 1e3b8649564ecd4f5aae020ec4d94bab834ac58c
-Author: Matthias Weckbecker <mweckbecker@suse.de>
+Author: Matthias Weckbecker <mweckbecker@weckbecker.name>
 Date:   Fri Dec 3 11:39:03 2010 +0100
 
     first commit
