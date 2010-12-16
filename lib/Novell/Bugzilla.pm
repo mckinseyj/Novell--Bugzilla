@@ -48,7 +48,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         my $i = 1;
 
         if ( !$field ) {
-            croak "invalid field";
+            croak "invalid field\n";
         }
 
         my $mech = $self->{mech};
@@ -61,12 +61,12 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
             $i++;
         }
 
-        croak "No form with the field $field available";
+        croak "No form with the field $field available\n";
     }
 
     ##############################################
     # _logged_in()
-    # Returns ture if authentication succeded, or
+    # Returns true if authentication succeded, or
     # otherwise false.
     ##############################################
     sub _logged_in {
@@ -74,11 +74,15 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
 
         if ( $content !~ m{Login(?:\s+)?failed(?:\.)?}gix ) {
 
+            $self->{'_is_logged_in'} = 1;
+
             # Login succeeded, return 1
             return 1;
         }
         else {
 
+            $self->{'_is_logged_in'} = 0;
+            
             # Login failed, return 0
             return 0;
         }
@@ -105,7 +109,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         if ( $mech->status != 200 || !$mech->success ) {
 
             # HTTP code > 200, !$mech->success
-            croak "Could not _login(), http code was != 200";
+            croak "Could not _login(), http code was != 200\n";
         }
 
         $self->_get_form_by_field('username');
@@ -171,8 +175,8 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         }
 
         # Create WWW::Mechanize object in $self
-        $self->{'mech'} = WWW::Mechanize->new
-          || croak "Could not create WWW::Mechanize object\n";
+        $self->{'mech'} = WWW::Mechanize->new()
+          || croak "Could not create WWW::Mechanize object.\n";
 
         if ( exists $args{'timeout'} ) {
             $self->{'mech'}->timeout ( $args{'timeout'} );
@@ -199,7 +203,7 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
 
             # Could not login, maybe wrong username or password,
             # croak
-            croak "Could not login (wrong username or password?)\n";
+            croak "Could not login (wrong username or password?).\n";
         }
 
         return $self->{'mech'};
@@ -225,7 +229,7 @@ __END__
         # $novell_bugzilla is a fully authenticated WWW::Mechanize object
         # on 'bugzilla.novell.com' now.
         print Dumper \$novell_bugzilla;
-        return 0;
+        return $novell_bugzilla->_is_logged_in;
 
 =head1 DESCRIPTION
 
@@ -257,7 +261,7 @@ time permits.
 =head1 OPTIONS
 
 During instance creation you can provide the following optional keys to the 
-package. (username and password are B<required> keys!)
+package. ('username' and 'password' are B<required> keys!)
 
 =over 2
 

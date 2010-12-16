@@ -51,4 +51,3 @@ eval {
 #6
 is( ( ref $novell_bugzilla ),
     "WWW::Mechanize", "WWW::Mechanize returned upon sucessful login?" );
-
