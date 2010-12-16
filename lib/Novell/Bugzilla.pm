@@ -22,6 +22,7 @@ package Novell::Bugzilla;
 use version; 
 our $VERSION   = qv("1.3.0");
 
+require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT    = qw();
 our @EXPORT_OK = qw(_logged_in);
