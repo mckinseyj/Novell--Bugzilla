@@ -267,23 +267,24 @@ package. ('username' and 'password' are B<required> keys!)
 
 =item server
 
-  C<$novell_bugzilla = new Novell::Bugzilla(server => "foo.bar.com/");>
+  C<$nb = new Novell::Bugzilla(server  => "foo.bar.com/");>
 
 =item use_ssl (B<required> to be 1 on bugzilla.novell.com (default))
 
-  C<$novell_bugzilla = new Novell::Bugzilla(use_ssl => 0);>
+  C<$nb = new Novell::Bugzilla(use_ssl => 0);>
 
 =item agent   (be careful when changing, iChain is strict)
 
-  c<$novell_bugzilla = new Novell::Bugzilla(agent => "Mozilla/1.37");>
+  c<$nb = new Novell::Bugzilla(agent   => "Mozilla/1.37");>
 
 =item timeout
 
-  C<$novell_bugzilla = new Novell::Bugzilla(timeout => 120);>
+  C<$nb = new Novell::Bugzilla(timeout => 120);>
 
 =item proxy and proxy_type
 
-  C<$novell_bugzilla = new Novell::Bugzilla(proxy => "http://localhost:80", proxy_type="http");>
+  C<$nb = new Novell::Bugzilla(proxy     => "http://localhost:80", 
+                               proxy_type=> ["http"]);>
 
 =back
 

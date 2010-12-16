@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
-use Test::More tests => 6;
+use Test::More tests => 8;
 
 BEGIN { use_ok('Novell::Bugzilla') };    #1
 require_ok('Novell::Bugzilla');          #2
@@ -44,10 +44,20 @@ like "$@",
 eval {
     $novell_bugzilla = new Novell::Bugzilla(
         username => "muster_mann",
-        password => "mmustermann1"
+        password => "mmustermann1",
+        timeout  => 360,
     );
 };
 
 #6
+unlike "$@",
+  qr/'username', and 'password' are required arguments./,
+  "Login succeeded.";
+
+#7
 is( ( ref $novell_bugzilla ),
     "WWW::Mechanize", "WWW::Mechanize returned upon sucessful login?" );
+
+#8
+is( ( $novell_bugzilla->timeout ),
+    360, "Modify HTTP timeout through Novell::Bugzilla." );
