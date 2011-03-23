@@ -216,6 +216,8 @@ __END__
 =pod 
 
 =head1 SYNOPSIS
+
+        # load Novell::Bugzilla
         use Novell::Bugzilla;
         use Data::Dumper;
 
@@ -229,6 +231,8 @@ __END__
         # $novell_bugzilla is a fully authenticated WWW::Mechanize object
         # on 'bugzilla.novell.com' now.
         print Dumper \$novell_bugzilla;
+        
+        # are we logged in?
         return $novell_bugzilla->_is_logged_in;
 
 =head1 DESCRIPTION
@@ -243,18 +247,18 @@ time permits.
 
 =over 4
 
-=item Authentication through iChain on 'bugzilla.novell.com' or any other 
-      iChain based application.
+=item * Authentication through iChain on 'bugzilla.novell.com' or any other 
+iChain based application.
 
-=item HTTP or HTTP over SSL, customizable
+=item * HTTP or HTTP over SSL, customizable
 
-=item HTTP User-Agent customizable as well
+=item * HTTP User-Agent customizable as well
 
-=item Proxy-Support for different types of proxies
+=item * Proxy-Support for different types of proxies
 
-=item Customizable HTTP Timeouts
+=item * Customizable HTTP Timeouts
 
-=item Leightweightness++ =)
+=item * Leightweightness++ =)
 
 =back
 
@@ -267,30 +271,30 @@ package. ('username' and 'password' are B<required> keys!)
 
 =item server
 
-  C<$nb = new Novell::Bugzilla(server  => "foo.bar.com/");>
+  $nb = new Novell::Bugzilla(server => "foo.bar.com/");
 
 =item use_ssl (B<required> to be 1 on bugzilla.novell.com (default))
 
-  C<$nb = new Novell::Bugzilla(use_ssl => 0);>
+  $nb = new Novell::Bugzilla(use_ssl => 0);
 
-=item agent   (be careful when changing, iChain is strict)
+=item agent (be careful when changing, iChain is strict)
 
-  c<$nb = new Novell::Bugzilla(agent   => "Mozilla/1.37");>
+  $nb = new Novell::Bugzilla(agent => "Mozilla/1.37");
 
 =item timeout
 
-  C<$nb = new Novell::Bugzilla(timeout => 120);>
+  $nb = new Novell::Bugzilla(timeout => 120);
 
 =item proxy and proxy_type
 
-  C<$nb = new Novell::Bugzilla(proxy     => "http://localhost:80", 
-                               proxy_type=> ["http"]);>
+  $nb = new Novell::Bugzilla(proxy     => "http://localhost:80", 
+                             proxy_type=> ["http"]);
 
 =back
 
 =head1 EXAMPLES
 
-Please take a look in the I<examples\/> directory that is shipped along with 
+Please take a look in the I<examples/> directory that is shipped along with 
 this package.
 
 =head1 BUGS
@@ -309,11 +313,7 @@ hardcode username and password readable for someone else.
 There will perhaps be a CPAN version, but currently there is only the version
 on github you may want to checkout:
 
-=begin html
-
-<b><a href="https://github.com/mweckbecker/Novell--Bugzilla"/></b>
-
-=end html
+https://github.com/mweckbecker/Novell--Bugzilla
 
 =head1 LICENSE
 
