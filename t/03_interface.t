@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
-use Test::More tests => 8;
+use Test::More tests => 10;
 
 BEGIN { use_ok('Novell::Bugzilla') };    #1
 require_ok('Novell::Bugzilla');          #2
@@ -26,38 +26,51 @@ my $username = int rand $$;
 my $password = int rand $$;
 
 #3
-eval { new Novell::Bugzilla( username => $username, password => $password ) }
-  || pass("Wrong username or password!?");
+eval { new Novell::Bugzilla( username => $username, 
+                             password => $password ) }
+  || pass("Wrong username || password");
 
 #4
+eval {
+    new Novell::Bugzilla(
+        username => "muster_mann",
+        password => "mmustermann1"
+    );
+}
+  && pass("Right username && password");
+
+#5
 eval { new Novell::Bugzilla( username => $username, ) };
 like "$@",
   qr/'username', and 'password' are required arguments./,
   "Missing password.";
 
-#5
+#6
 eval { new Novell::Bugzilla( password => $password, ) };
 like "$@",
   qr/'username', and 'password' are required arguments./,
   "Missing username.";
 
-eval {
-    $novell_bugzilla = new Novell::Bugzilla(
+#7
+my $novell_bugzilla = eval {
+    new Novell::Bugzilla(
         username => "muster_mann",
         password => "mmustermann1",
         timeout  => 360,
     );
 };
-
-#6
 unlike "$@",
   qr/'username', and 'password' are required arguments./,
   "Login succeeded.";
 
-#7
+#8
+isa_ok $novell_bugzilla, "WWW::Mechanize" 
+    || fail "No WWW::Mechanize object returned";
+
+#9
 is( ( ref $novell_bugzilla ),
     "WWW::Mechanize", "WWW::Mechanize returned upon sucessful login?" );
 
-#8
+#10
 is( ( $novell_bugzilla->timeout ),
     360, "Modify HTTP timeout through Novell::Bugzilla." );
