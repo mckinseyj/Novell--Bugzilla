@@ -22,16 +22,19 @@ package Novell::Bugzilla;
 use version; 
 our $VERSION   = qv("1.3.0");
 
+our $logged_in = 0;
+
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT    = qw();
-our @EXPORT_OK = qw(_logged_in);
+our @EXPORT_OK = qw(logged_in);
 
 use strict;
 use warnings 'all';
 use Readonly;
 use Carp qw(croak);
 use WWW::Mechanize;
+use WWW::Mechanize::DecodedContent;
 
 Readonly my $BUGZILLA_URL  => qq(bugzilla.novell.com);
 Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6));
@@ -70,20 +73,24 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
     # otherwise false.
     ##############################################
     sub _logged_in {
-        my ( $self, $content ) = @_;
+        my ( $self, $content, $username ) = @_;
 
-        if ( $content !~ m{Login(?:\s+)?failed(?:\.)?}gix ) {
+        if ( $content =~ m{Login(?:\s+)?failed(?:\.)?}gix ) {
 
-            $self->{'_is_logged_in'} = 1;
+            our $logged_in = 0;
 
+            # Login failed, return 0
+            return 0;
+        }
+        elsif ($content =~ m{request\.cgi\?requester=$username}gix 
+                || $content =~ m{https://www\.novell.com/cmd/ICSLogout} ) {
+
+            our $logged_in = 1;
+            
             # Login succeeded, return 1
             return 1;
         }
         else {
-
-            $self->{'_is_logged_in'} = 0;
-            
-            # Login failed, return 0
             return 0;
         }
     }
@@ -121,9 +128,12 @@ Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.
         $mech->field( 'username',  $username );
         $mech->field( 'password',  $password );
 
+        my $content;
         my $response = $mech->submit_form();
 
-        if ( $self->_logged_in( $response->content ) ) {
+        $content = $response->decoded_content || $response->content;
+
+        if ( $self->_logged_in( $content, $username ) ) {
 
             # Login succeeded
             return 1;
@@ -218,8 +228,8 @@ __END__
 =head1 SYNOPSIS
 
         # load Novell::Bugzilla
-        use Novell::Bugzilla;
         use Data::Dumper;
+        use Novell::Bugzilla qw/logged_in/;
 
         # minimalistic example of indirect invocation:
         my $novell_bugzilla = new Novell::Bugzilla(username => 'foo',
@@ -233,7 +243,7 @@ __END__
         print Dumper \$novell_bugzilla;
         
         # are we logged in?
-        return $novell_bugzilla->_is_logged_in;
+        return $logged_in;
 
 =head1 DESCRIPTION
 
