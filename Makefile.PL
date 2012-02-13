@@ -3,22 +3,23 @@
 require 5.6.1;
 use ExtUtils::MakeMaker;
 
-WriteMakefile
-(
-          'NAME'         => 'Novell::Bugzilla',
-          'VERSION_FROM' => 'lib/Novell/Bugzilla.pm',
-          'AUTHOR'       => 'Matthias Weckbecker, <matthias@weckbecker.name>',
-          
-          'PREREQ_PM' => {
-                           'Carp'                 => 0,
-                           'Readonly'             => 0,
-                           'WWW::Mechanize'       => 0,
-                           'Test::WWW::Mechanize' => 0,
-                           'Test::More'           => 0,
-                         },
-          
-          'INSTALLDIRS'  => 'site',
-          'EXE_FILES'    => [],
-          'PL_FILES'     => {},
+WriteMakefile(
+    'NAME'         => 'Novell::Bugzilla',
+    'VERSION_FROM' => 'lib/Novell/Bugzilla.pm',
+    'AUTHOR'       => 'Matthias Weckbecker, <matthias@weckbecker.name>',
+
+    'PREREQ_PM' => {
+        'Carp'                           => 0,
+        'MIME::Base64'                   => 0,
+        'Readonly'                       => 0,
+        'WWW::Mechanize'                 => 0,
+        'WWW::Mechanize::DecodedContent' => 0,
+        'Test::WWW::Mechanize'           => 0,
+        'Test::More'                     => 0,
+    },
+
+    'INSTALLDIRS' => 'site',
+    'EXE_FILES'   => [],
+    'PL_FILES'    => {},
 );
 

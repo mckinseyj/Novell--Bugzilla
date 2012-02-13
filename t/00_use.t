@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 ########################################################################
-# Novell::Bugzilla - Authenticate on 'bugzilla.novell.com' via iChain
+# Novell::Bugzilla - Authenticate on 'bugzilla.novell.com'
 # Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
 #
 # This program is free software: you can redistribute it and/or modify

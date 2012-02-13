@@ -2,7 +2,7 @@ Novell::Bugzilla (v1.3.0)
 ===================================
 
 Novell::Bugzilla is a lightweight, easy and useful interface for creating
-fully iChain authenticated WWW::Mechanize objects on bugzilla.novell.com.
+fully authenticated WWW::Mechanize objects on bugzilla.novell.com.
 It can either work on HTTP or HTTP over SSL and allows its users to set a
 custom HTTP User-Agent or a HTTP(s) Proxy, and probably more in future if
 time permits. More information available in the POD format at lib/Novell/

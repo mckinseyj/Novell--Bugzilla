@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 ########################################################################
-# Novell::Bugzilla - Authenticate on 'bugzilla.novell.com' via iChain
+# Novell::Bugzilla - Authenticate on 'bugzilla.novell.com'
 # Copyright (C) 2010 Matthias Weckbecker,  <matthias@weckbecker.name>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,17 +17,12 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
-use Test::More tests => 6;
+use Test::More tests => 3;
 
 BEGIN { use_ok('Novell::Bugzilla') };    #1
 require_ok('Novell::Bugzilla');          #2
 
-$v = Novell::Bugzilla::_logged_in( {}, "LoGin FaiLed",                "bla" );
-$w = Novell::Bugzilla::_logged_in( {}, "LoGiN fAiLeD.",               "foo" );
-$x = Novell::Bugzilla::_logged_in( {}, "Login failed.",               "bar" );
-$y = Novell::Bugzilla::_logged_in( {}, "request\.cgi\?requester=baz", "baz" );
+eval { $nb = Novell::Bugzilla->new(username => "foo",
+                                   password => "bar"); };
 
-is $v, 0, "Login should fail, 0.";       #4
-is $x, 0, "Login should fail, 1.";       #5
-is $w, 0, "Login should fail, 2.";       #6
-is $y, 1, "Login should succeed.";       #7
+like $@, qr/Could not login \(wrong username or password\?\)/; #3

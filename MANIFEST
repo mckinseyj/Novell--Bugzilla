@@ -6,7 +6,8 @@ LICENSE
 Makefile.PL
 MANIFEST
 README
-t/00_can.t
+t/00_use.t
 t/01_logged_in.t
 t/02_bugzilla_up.t
+t/02_interface.t
 t/03_interface.t

@@ -19,8 +19,8 @@
 
 package Novell::Bugzilla;
 
-use version;
-our $VERSION = qv("1.3.2");
+use version; 
+our $VERSION   = qv("1.3.2");
 
 our $logged_in = 0;
 
@@ -37,9 +37,8 @@ use MIME::Base64;
 use WWW::Mechanize;
 use WWW::Mechanize::DecodedContent;
 
-Readonly my $BUGZILLA_URL => qq(apibugzilla.novell.com);
-Readonly my $DEFAULT_AGENT =>
-  qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6));
+Readonly my $BUGZILLA_URL  => qq(apibugzilla.novell.com);
+Readonly my $DEFAULT_AGENT => qq(Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.2.6));
 
 {
 
@@ -49,9 +48,11 @@ Readonly my $DEFAULT_AGENT =>
     # otherwise false.
     ##############################################
     sub _logged_in {
-        my ($self) = @_;
+        my ( $self ) = @_;
 
-        if ( $self->{'mech'}->status == 200 ) {
+        $self->{mech}->get($self->{protocol} . "://" . $BUGZILLA_URL); 
+
+        if ($self->{'mech'}->status == 200) {
             $logged_in = 1;
             return 1;
         }
@@ -67,13 +68,15 @@ Readonly my $DEFAULT_AGENT =>
     # return 1 on success, 0 on failure
     ##############################################
     sub _login {
-        my ( $self, $username, $password ) = @_;
+        my ($self, $username, $password) = @_;
 
-        $self->{mech}->default_header( Authorization => 'Basic '
-              . encode_base64( $username . ':' . $password ) );
+        $self->{mech}->default_header(
+                Authorization => 'Basic ' . 
+                encode_base64( $username . ':' . $password ) 
+        );
 
-        $self->{mech}->get( $self->{protocol} . "://" . $BUGZILLA_URL );
-
+        $self->{mech}->get($self->{protocol} . "://" . $BUGZILLA_URL);
+       
         if ( $self->_logged_in ) {
 
             # Login succeeded
@@ -91,7 +94,7 @@ Readonly my $DEFAULT_AGENT =>
     #########################################################################
 
     sub new {
-        my ( $class, $self, %args ) = ( shift, {}, @_ );
+        my ($class, $self, %args) = (shift, {}, @_);
 
         if ( !$args{'username'} || !$args{'password'} ) {
 
@@ -100,7 +103,6 @@ Readonly my $DEFAULT_AGENT =>
         }
 
         if ( !$args{'use_ssl'} ) {
-
             # Use HTTP
             $self->{'protocol'} = 'http';
         }
@@ -115,22 +117,22 @@ Readonly my $DEFAULT_AGENT =>
           || croak "Could not create WWW::Mechanize object.\n";
 
         if ( exists $args{'timeout'} ) {
-            $self->{'mech'}->timeout( $args{'timeout'} );
+            $self->{'mech'}->timeout ( $args{'timeout'} );
         }
 
         if ( !exists $args{'agent'} ) {
 
             # No custom agent specified, use default agent instead
-            $self->{'mech'}->agent($DEFAULT_AGENT);
+            $self->{'mech'}->agent( $DEFAULT_AGENT );
         }
         else {
             $self->{'mech'}->agent( $args{'agent'} );
         }
 
         if ( exists $args{'proxy'} && exists $args{'proxy_type'} ) {
-
+            
             # Custom proxy required, set it
-            $self->{'mech'}->proxy( [ $args{'proxy_type'} ], $args{'proxy'} );
+            $self->{'mech'}->proxy([$args{'proxy_type'}], $args{'proxy'});
         }
 
         bless $self, $class;
@@ -139,7 +141,7 @@ Readonly my $DEFAULT_AGENT =>
 
             # Could not login, maybe wrong username or password,
             # croak
-            croak "Could not login (wrong username or password?)\n";
+            croak "Could not login (wrong username or password?).\n";
         }
 
         return $self->{'mech'};
@@ -208,7 +210,7 @@ package. ('username' and 'password' are B<required> keys!)
 
   $nb = new Novell::Bugzilla(use_ssl => 0);
 
-=item agent (be careful when changing)
+=item agent (be careful when changing, iChain is strict)
 
   $nb = new Novell::Bugzilla(agent => "Mozilla/1.37");
 
