@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
-use Test::More tests => 6;
+use Test::More tests => 5;
 
 BEGIN { use_ok('Novell::Bugzilla') };    #1
 require_ok('Novell::Bugzilla');          #2
